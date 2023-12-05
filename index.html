@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Calendar</title>
+    <style>
+        body {
+            background-color: black; /* Set black background for the entire page */
+            color: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+            font-family: 'Arial', sans-serif;
+        }
+
+        h1 {
+            color: #ff0000;
+        }
+
+        .settings-button {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            background-color: #000000; /* Black background */
+            color: #ffffff; /* White text */
+            border: 2px solid #ffffff; /* White border */
+        }
+
+        .settings-button:hover {
+            background-color: #333333; /* Darker black on hover */
+        }
+
+        .red-button {
+            background-color: rgba(255, 0, 0, 0.5);
+            border: 2px solid #d00000;
+            color: white;
+            padding: 4px 8px;
+            font-size: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .red-button:hover {
+            background-color: rgba(208, 0, 0, 0.7);
+            border-color: #a00000;
+            color: #ffffff;
+        }
+
+        .img-responsive {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+        .input-container {
+            margin-bottom: 20px;
+        }
+
+        script {
+            background-color: black; /* Set black background for script block */
+            color: white; /* Set white text color for script */
+            padding: 10px; /* Add padding to the script block */
+            display: block;
+            overflow-x: auto;
+        }
+
+        @media (max-width: 768px) {
+            .red-button {
+                padding: 3px 6px;
+                font-size: 9px;
+            }
+        }
+    </style>
+
+    <script src="https://cdn.animejs.com/lib/anime.min.js"></script>
+    <script>
+        anime.timeline({
+            duration: 0.3
+        }).add({
+            targets: '.red-button',
+            opacity: [0.7, 1],
+            scale: [1.05, 1]
+        }).play();
+
+        function redirect() {
+            var urlInputValue = document.getElementById('urlInput').value;
+            if (urlInputValue.trim() === '') {
+                alert('Please enter a valid URL.');
+            } else {
+                window.location.href = urlInputValue;
+            }
+        }
+
+        function redirectTo(url) {
+            window.location.href = url;
+        }
+
+        // Add event listener for 'Enter' key press
+        document.getElementById('urlInput').addEventListener('keydown', function (e) {
+            if (e.key === 'Enter') {
+                redirect();
+            }
+        });
+    </script>
+</head>
+
+<body>
+    <h1>Beta Redirect Tool</h1>
+
+    <div class="input-container">
+        <input type="text" id="urlInput" placeholder="Enter URL">
+        <button class="red-button" onclick="redirect()">Go</button>
+    </div>
+
+    <br><br>
+    <div class="button-container">
+    <button class="red-button" onclick="redirectTo('https://oldmikers.github.io/')">Home</button>
+    <button class="red-button" onclick="redirectTo('https://oldmikers.github.io/darkmode.github.io/')">Dark Mode</button>
+
+    </div>
+
+    <button class="settings-button" onclick="redirectTo('https://oldmikers.github.io/setting.github.io/')">
+        <img src="settings-icon.png" alt="Settings Icon">
+    </button>
+</body>
+
+</html>
